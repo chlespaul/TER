@@ -1,10 +1,22 @@
 package ter;
 
+import org.apache.poi.*;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class TER {
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
-	public static void main(String[] args) {
+public class TER {
+	
+	public static final String PATH = "C:\\Users\\HONEY\\Downloads\\projet-donees-aleatoires-periode-corrigee.xlsx";
+
+	public static void main(String[] args) throws EncryptedDocumentException, InvalidFormatException, IOException {
 
 		Resource exploit = new Resource("Exploit", 220,44,200,66,42,207,110);
         Resource testeurIt = new Resource("Testeur IT",176,176,180,44,63,115,176);
@@ -20,6 +32,12 @@ public class TER {
         Resource cpBi = new Resource("CP BI",22,66,80,154,84,23,88);
         
         ArrayList<Project> projects = new ArrayList<Project>();
+        File file = new File(PATH);
+        FileInputStream fIP = new FileInputStream(file);
+        Workbook workbook = WorkbookFactory.create(file);
+
+        // Retrieving the number of sheets in the Workbook
+        System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
         
 	}
 
