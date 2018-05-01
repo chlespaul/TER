@@ -31,5 +31,71 @@ public class Resource {
         this.jun = jun;
         
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getDec() {
+		return dec;
+	}
+
+	public void setDec(double dec) {
+		this.dec = dec;
+	}
+
+	public double getJan() {
+		return jan;
+	}
+
+	public void setJan(double jan) {
+		this.jan = jan;
+	}
+
+	public double getFev() {
+		return fev;
+	}
+
+	public void setFev(double fev) {
+		this.fev = fev;
+	}
+
+	public double getMar() {
+		return mar;
+	}
+
+	public void setMar(double mar) {
+		this.mar = mar;
+	}
+
+	public double getApr() {
+		return apr;
+	}
+
+	public void setApr(double apr) {
+		this.apr = apr;
+	}
+
+	public double getMay() {
+		return may;
+	}
+
+	public void setMay(double may) {
+		this.may = may;
+	}
+
+	public double getJun() {
+		return jun;
+	}
+
+	public void setJun(double jun) {
+		this.jun = jun;
+	}
+    
+    
 	
 }
