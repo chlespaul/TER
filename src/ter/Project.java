@@ -71,5 +71,6 @@ public class Project {
     
     public void addTask(Task task) {
     	this.taches.add(task);
+    	this.resources += task.getEffort();
     }
 }

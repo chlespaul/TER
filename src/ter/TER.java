@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
@@ -70,7 +73,7 @@ public class TER {
             String activityPriority = dataFormatter.formatCellValue((row.getCell(7)));
             String dateDebAlea = dataFormatter.formatCellValue((row.getCell(10)));
             String dateFinAlea = dataFormatter.formatCellValue((row.getCell(11)));
-            String effortAlea = dataFormatter.formatCellValue((row.getCell(12)));
+            double effortAlea = row.getCell(12).getNumericCellValue();
             
             Resource resource = null;
             for(int i=0; i<resources.size(); i++) {
@@ -78,23 +81,33 @@ public class TER {
             		resource = resources.get(i);
             }
             
+            Task task = new Task(effortAlea,resource);
+            boolean exists = false;
             for(int i=0; i<projects.size(); i++) {
             	Project actual = projects.get(i);
             	if(actual.getName().equals(projectName)) {
             		actual.addTask(task);
+            		exists = true;
             	}
             }
-            // Now let's iterate over the columns of the current row
-            Iterator<Cell> cellIterator = row.cellIterator();
-
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                String cellValue = dataFormatter.formatCellValue(cell);
-                System.out.print(cellValue + "\t");
+            if(!exists) {
+            	Project p = new Project(null, null, projectName);
+            	p.addTask(task);
+            	projects.add(p);
             }
-            System.out.println();
+            
         }
-
+        
+        Collections.sort(projects,new Comparator<Project>() {
+        	@Override
+        	public int compare(Project p1, Project p2) {
+        		return ((p1.getResources() - p2.getResources())>0)? -1:1;
+        	}
+        });
+        
+        for (Project pro : projects) {
+			System.out.println(pro.getName() + ":" + pro.getResources());
+		}
 	}
 
 }
