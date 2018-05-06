@@ -2,13 +2,13 @@ package ter;
 
 public class Resource {
 
-	public final static int DEC = 22;
-    public final static int JAN = 22;
-    public final static int FEV = 20;
-    public final static int MAR = 22;
-    public final static int APR = 21;
-    public final static int MAY = 23;
-    public final static int JUN = 22;
+	public final static int R_DEC = 22;
+    public final static int R_JAN = 22;
+    public final static int R_FEV = 20;
+    public final static int R_MAR = 22;
+    public final static int R_APR = 21;
+    public final static int R_MAY = 23;
+    public final static int R_JUN = 22;
     
     private String name;
     private double dec;
@@ -96,6 +96,8 @@ public class Resource {
 		this.jun = jun;
 	}
     
-    
+    public double getRes (){
+    	return getJan() + getFev() + getMar() + getApr() + getMay() + getJun() + getDec();
+	}
 	
 }
